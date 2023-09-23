@@ -1,0 +1,1115 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "description": "API for User Management",
+        "title": "Serverless Task",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ulof48gpo9.execute-api.ap-south-1.amazonaws.com/Dev"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Serverless Task"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Serverless Task"
+                ],
+                "summary": "Register a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "Name": {
+                                        "type": "string"
+                                    },
+                                    "ID": {
+                                        "type": "string"
+                                    },
+                                    "Email": {
+                                        "type": "string"
+                                    },
+                                    "Password": {
+                                        "type": "string"
+                                    },
+                                    "ShippingAddress": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Name",
+                                    "ID",
+                                    "Email",
+                                    "Password",
+                                    "ShippingAddress"
+                                ],
+                                "example": {
+                                    "Name": "John Doe",
+                                    "ID": "12345",
+                                    "Email": "john@example.com",
+                                    "Password": "securepassword",
+                                    "ShippingAddress": "123 Main St"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "User registered successfully"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User registration failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "User registration failed"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "User with the same ID already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "User with the same ID already exists"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profile": {
+            "put": {
+                "tags": [
+                    "Serverless Task"
+                ],
+                "summary": "Update user profile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "Name": {
+                                        "type": "string"
+                                    },
+                                    "Email": {
+                                        "type": "string"
+                                    },
+                                    "ShippingAddress": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "user_id"
+                                ],
+                                "example": {
+                                    "user_id": "101",
+                                    "UserName": "John Doe",
+                                    "Email": "john@example.com",
+                                    "ShippingAddress": "123 Main St"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Profile updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "Profile updated successfully"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "Invalid request payload"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "User not found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Get user profile",
+                "tags": [
+                    "Serverless Task"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User ID to retrieve the profile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "102"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "UserName": {
+                                            "type": "string"
+                                        },
+                                        "Email": {
+                                            "type": "string"
+                                        },
+                                        "ShippingAddress": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "UserName": "John Doe",
+                                        "Email": "john@example.com",
+                                        "ShippingAddress": "123 Main St"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "User Not Found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "summary": "Get products",
+                "tags": [
+                    "Serverless Task"
+                ],
+                "parameters": [
+                    {
+                        "name": "Keyword",
+                        "in": "query",
+                        "description": "Keyword for searching",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Electronics"
+                    },
+                    {
+                        "name": "Category",
+                        "in": "query",
+                        "description": "Category for filtering",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Laptops"
+                    },
+                    {
+                        "name": "MinPrice",
+                        "in": "query",
+                        "description": "Minimum price for filtering",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 100
+                    },
+                    {
+                        "name": "MaxPrice",
+                        "in": "query",
+                        "description": "Maximum price for filtering",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1000
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "ProductID": {
+                                                "type": "string"
+                                            },
+                                            "Subcategory": {
+                                                "type": "string"
+                                            },
+                                            "Price": {
+                                                "type": "number"
+                                            },
+                                            "Category": {
+                                                "type": "string"
+                                            },
+                                            "Keywords": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "example": [
+                                            {
+                                                "ProductID": "P104",
+                                                "Subcategory": "Gaming Laptops",
+                                                "Price": 59999.0,
+                                                "Category": "Laptops",
+                                                "Keywords": "Electronics"
+                                            },
+                                            {
+                                                "ProductID": "P103",
+                                                "Subcategory": "Mobile",
+                                                "Price": 10989.56,
+                                                "Category": "Smartphone",
+                                                "Keywords": "Electronics"
+                                            },
+                                            {
+                                                "ProductID": "P101",
+                                                "Subcategory": "Bluetooth",
+                                                "Price": 999.0,
+                                                "Category": "Headphones",
+                                                "Keywords": "Electronics"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Keyword is must to search a product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Product Not Found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/add": {
+            "post": {
+                "tags": [
+                    "Serverless Task"
+                ],
+                "summary": "Add to cart",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "product_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "user_id",
+                                    "product_id"
+                                ],
+                                "example": {
+                                    "user_id": "101",
+                                    "product_id": "P104"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product added to the cart successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Product Successfully Added to the Cart!"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing payload",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Provide the Data to add"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Either User or Product not Found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Product already exists in the cart",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Product already exists in the cart"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/checkout": {
+            "post": {
+                "tags": [
+                    "Serverless Task"
+                ],
+                "summary": "checkout",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "shipping_address": {
+                                        "type": "string"
+                                    },
+                                    "payment_method": {
+                                        "type": "string"
+                                    },
+                                    "cart_items": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "product_id": {
+                                                    "type": "string"
+                                                },
+                                                "quantity": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "product_id",
+                                                "quantity"
+                                            ],
+                                            "example": [
+                                                {
+                                                    "product_id": "P103",
+                                                    "quantity": 5
+                                                },
+                                                {
+                                                    "product_id": "P104",
+                                                    "quantity": 1
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "user_id",
+                                    "shipping_address",
+                                    "payment_method",
+                                    "cart_items"
+                                ],
+                                "example": {
+                                    "user_id": "101",
+                                    "shipping_address": "Polali",
+                                    "payment_method": "COD",
+                                    "cart_items": [
+                                        {
+                                            "product_id": "P103",
+                                            "quantity": 5
+                                        },
+                                        {
+                                            "product_id": "P104",
+                                            "quantity": 1
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Order Placed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Order Placed Successfully.."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing payload",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No data provided"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders/{order_id}/status": {
+            "get": {
+                "summary": "Get status of the order",
+                "tags": [
+                    "Serverless Task"
+                ],
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "order_id for get status",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "120"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Order Placed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Order Placed"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Order Id is required"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Order Not Found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/remove": {
+            "delete": {
+                "summary": "Remove a product from the cart",
+                "tags": [
+                    "Serverless Task"
+                ],
+                "parameters": [
+                    {
+                        "name": "UserID",
+                        "in": "query",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ProductID",
+                        "in": "query",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product in the cart deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "Product in the cart deleted successfully"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "Both UserID and ProductID query parameters are required."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "Message": "Product is not available in the cart"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "get": {
+                "summary": "Get a user's orders",
+                "tags": [
+                    "Serverless Task"
+                ],
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "query",
+                        "description": "User ID to retrieve orders",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Orders": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "Payment_Method": {
+                                                        "type": "string"
+                                                    },
+                                                    "shippingAddress": {
+                                                        "type": "string"
+                                                    },
+                                                    "car_item": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "product_id": {
+                                                                    "type": "string"
+                                                                },
+                                                                "quantity": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "Total_Price": {
+                                                        "type": "number",
+                                                        "format": "float"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "Orders": [
+                                            {
+                                                "Payment_Method": "COD",
+                                                "shippingAddress": "Polali",
+                                                "car_item": [
+                                                    {
+                                                        "product_id": "P103",
+                                                        "quantity": "5"
+                                                    },
+                                                    {
+                                                        "product_id": "P104",
+                                                        "quantity": "1"
+                                                    }
+                                                ],
+                                                "Total_Price": 114946.8
+                                            },
+                                            {
+                                                "Payment_Method": "COD",
+                                                "shippingAddress": "Polali",
+                                                "car_item": [
+                                                    {
+                                                        "product_id": "P103",
+                                                        "quantity": "5"
+                                                    },
+                                                    {
+                                                        "product_id": "P104",
+                                                        "quantity": "1"
+                                                    }
+                                                ],
+                                                "Total_Price": 114946.8
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "User ID is required in the query parameter"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "error": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Registration": {
+                "type": "object",
+                "properties": {
+                    "ID": {
+                        "type": "string"
+                    },
+                    "Email": {
+                        "type": "string"
+                    },
+                    "Name": {
+                        "type": "string"
+                    },
+                    "Password": {
+                        "type": "string"
+                    },
+                    "ShippingAddress": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

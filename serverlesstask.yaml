@@ -1,0 +1,133 @@
+"/orders": {
+      "get": {
+        "summary": "Get a user's orders",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "query",
+            "description": "User ID to retrieve orders",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Orders": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Payment_Method": {
+                            "type": "string"
+                          },
+                          "shippingAddress": {
+                            "type": "string"
+                          },
+                          "car_item": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "product_id": {
+                                  "type": "string"
+                                },
+                                "quantity": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "Total_Price": {
+                            "type": "number",
+                            "format": "float"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "Orders": [
+                      {
+                        "Payment_Method": "COD",
+                        "shippingAddress": "Polali",
+                        "car_item": [
+                          {
+                            "product_id": "P103",
+                            "quantity": "5"
+                          },
+                          {
+                            "product_id": "P104",
+                            "quantity": "1"
+                          }
+                        ],
+                        "Total_Price": 114946.8
+                      },
+                      {
+                        "Payment_Method": "COD",
+                        "shippingAddress": "Polali",
+                        "car_item": [
+                          {
+                            "product_id": "P103",
+                            "quantity": "5"
+                          },
+                          {
+                            "product_id": "P104",
+                            "quantity": "1"
+                          }
+                        ],
+                        "Total_Price": 114946.8
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User ID is required in the query parameter"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }

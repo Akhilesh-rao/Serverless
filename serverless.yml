@@ -1,0 +1,41 @@
+service: aws-project
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-south-1
+  endpointType: regional 
+
+functions:
+  register_node:
+    handler: handlers/registration.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/register
+          method: POST
+
+  product_search:
+    handler: handlers/productsearch.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/products
+          method: GET
+
+  add_cart:
+    handler: handlers/addcart.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/cart/add
+          method: POST
+  
+  checkout:
+    handler: handlers/checkout.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/checkout
+          method: POST
