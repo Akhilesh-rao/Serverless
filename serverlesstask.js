@@ -5,8 +5,6 @@ const orderStatusTableName = 'Order_Status';
 const checkoutTableName = 'Orders';
 const userTableName = 'Registration';
 
-const client = new AWS.DynamoDB();
-
 exports.handler = async (event) => {
     try {
         const details = JSON.parse(event.body);
@@ -96,7 +94,6 @@ exports.handler = async (event) => {
                 }
             }
         }
-        total_price = parseFloat(total_price.toFixed(1));
 
         const checkout_data = {
             Order_ID: String(new_order_id),

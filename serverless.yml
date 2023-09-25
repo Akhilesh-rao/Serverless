@@ -32,10 +32,51 @@ functions:
           path: api/cart/add
           method: POST
   
-  checkout:
+  check-out:
     handler: handlers/checkout.handler
     role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
     events:
       - http:
           path: api/checkout
           method: POST
+  
+  order-status:
+    handler: handlers/order_status.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/orders/{order_id}/status
+          method: GET
+  
+  user-profile:
+    handler: handlers/user_profile.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/profile
+          method: GET
+        
+  update-profile:
+    handler: handlers/update_profile.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/profile
+          method: PUT
+
+  remove-cart:
+    handler: handlers/remove_cart.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/cart/remove
+          method: DELETE
+
+  orders:
+    handler: handlers/orders.handler
+    role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
+    events:
+      - http:
+          path: api/orders
+          method: GET
+
