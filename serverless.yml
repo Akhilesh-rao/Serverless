@@ -21,7 +21,7 @@ functions:
     role: arn:aws:iam::029789602047:role/Lambda-dynamodb-role
     events:
       - http:
-          path: api/products
+          path: api/products-lis
           method: GET
 
   add_cart:
